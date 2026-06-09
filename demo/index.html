@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HamsterNote DocxParser Demo</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/demo/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow">@hamster-note/docx-parser</div>
+        <h1>DOCX Encode / Decode 双向演示</h1>
+        <p>
+          上传一个 DOCX，Demo 会调用 <code>DocxParser.encode()</code> 解析成中间文档；随后可继续调用
+          <code>DocxParser.decode()</code> 重新生成 DOCX 文件。
+        </p>
+      </section>
+
+      <section class="grid" aria-label="DOCX encode decode demo">
+        <article class="panel encode-panel">
+          <div class="panel-header">
+            <span class="step">01</span>
+            <div>
+              <h2>Encode DOCX</h2>
+              <p>选择 .docx 文件并转换为 IntermediateDocument。</p>
+            </div>
+          </div>
+
+          <label class="dropzone" for="docx-input">
+            <input id="docx-input" type="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+            <span class="drop-title">选择 DOCX 文件</span>
+            <span class="drop-copy">也可以直接把文件拖到这里</span>
+          </label>
+
+          <button id="encode-button" type="button" disabled>Encode 当前文件</button>
+          <div id="encode-status" class="status idle">等待上传 DOCX。</div>
+        </article>
+
+        <article class="panel decode-panel">
+          <div class="panel-header">
+            <span class="step">02</span>
+            <div>
+              <h2>Decode DOCX</h2>
+              <p>把已解析的中间文档重新打包成可下载 DOCX。</p>
+            </div>
+          </div>
+
+          <button id="decode-button" type="button" disabled>Decode 并下载 DOCX</button>
+          <div id="decode-status" class="status idle">完成 encode 后即可 decode。</div>
+          <a id="download-link" class="download-link" hidden>下载生成的 DOCX</a>
+        </article>
+      </section>
+
+      <section class="result-panel">
+        <div class="result-header">
+          <h2>中间文档预览</h2>
+          <span id="summary-pill">No document</span>
+        </div>
+        <dl class="metrics">
+          <div>
+            <dt>Title</dt>
+            <dd id="metric-title">-</dd>
+          </div>
+          <div>
+            <dt>Document ID</dt>
+            <dd id="metric-id">-</dd>
+          </div>
+          <div>
+            <dt>Pages</dt>
+            <dd id="metric-pages">-</dd>
+          </div>
+          <div>
+            <dt>Decoded Size</dt>
+            <dd id="metric-size">-</dd>
+          </div>
+        </dl>
+        <pre id="preview" aria-live="polite">上传 DOCX 后，这里会展示 encode 得到的页面文本摘要。</pre>
+      </section>
+    </main>
+
+    <script type="module" src="/demo/main.js"></script>
+  </body>
+</html>
